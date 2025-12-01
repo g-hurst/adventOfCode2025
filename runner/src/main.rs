@@ -12,7 +12,7 @@ struct Cli {
     part: u8,
 
     /// Which input to use: example or real
-    #[arg(value_parser = ["example", "ex", "real", "input"], value_name = "example|real")]
+    #[arg(value_parser = ["example", "real"], value_name = "example|real")]
     mode: String,
 
     /// Optional expected answer; if provided, result will be validated against it
@@ -22,7 +22,7 @@ struct Cli {
 fn main() {
     let cli = Cli::parse();
 
-    let use_example = matches!(cli.mode.as_str(), "example" | "ex");
+    let use_example = matches!(cli.mode.as_str(), "example");
 
     let result = match solvers::run_day(cli.day, cli.part, use_example) {
         Some(r) => r,
