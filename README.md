@@ -76,9 +76,3 @@ cargo run -p runner -- 1 2 real
 - Crates:
   - `clap` – CLI parsing for the `runner` executable.
 
-Install Rust via [`rustup`](https://rustup.rs/) if you don’t have it already:
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
