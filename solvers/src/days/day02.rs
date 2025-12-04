@@ -111,7 +111,6 @@ pub fn part1(use_example: bool) -> String {
     sum.to_string()
 }
 
-/// Placeholder for part 2 of day 2.
 pub fn part2(use_example: bool) -> String {
     let mut sum: u64 = 0;
     for range in parse_ranges(use_example).iter() {
