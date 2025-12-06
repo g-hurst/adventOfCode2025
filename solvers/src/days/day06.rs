@@ -8,19 +8,18 @@ fn parse_equasions(use_example: bool, part: u8) -> Vec<(char, Vec<u64>)> {
         format!("inputs/day{day:02}.txt")
     };
 
-
-
     let text = fs::read_to_string(&path)
         .unwrap_or_else(|e| panic!("Failed to read {}: {}", path, e));
     let data = text.split('\n').collect::<Vec<&str>>();
 
-    
     if part == 1 {
+        // parse equasions line-wise
         let mut equastions: Vec<(char, Vec<u64>)> = vec![(' ', Vec::new()); data[0].split_whitespace().count()];
         for (n, line) in data.iter().enumerate() {
             if line.is_empty() {
                 continue;
             }
+            // parse each line into the equastions splitting on whitespace
             for (i, c) in line.split_whitespace().enumerate() {
                 if n == data.len() - 1 {
                     let op = c.chars().next().unwrap();
@@ -34,11 +33,13 @@ fn parse_equasions(use_example: bool, part: u8) -> Vec<(char, Vec<u64>)> {
 
         equastions
     } else {
+        // parse equasions column-wise
         let mut nums = vec![0u64; data[0].chars().count()];
         for line in data.iter().take(data.len() - 1) {
             if line.is_empty() {
                 continue;
             }
+            // parse each character and reconstruct numbers column-wise
             for (i, c) in line.chars().enumerate() {
                 if let Some(val) = c.to_digit(10) {
                     nums[i] = nums[i] * 10 + val as u64;
@@ -46,11 +47,14 @@ fn parse_equasions(use_example: bool, part: u8) -> Vec<(char, Vec<u64>)> {
             }
         }
         
+        // construct equasions from the last line
         let mut equastions: Vec<(char, Vec<u64>)> = Vec::new();
         for (i, c) in data[data.len() - 1].chars().enumerate() {
             if c == '+' || c == '*' {
                 equastions.insert(0, (c, Vec::new()));
             }
+            // add the corresponding number if it's not zero 
+            // (assuming zeros are not valid numbers)
             if nums[i] != 0 {
                 equastions[0].1.push(nums[i]);
             }
