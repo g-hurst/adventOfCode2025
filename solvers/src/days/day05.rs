@@ -32,8 +32,6 @@ fn parse_products(use_example: bool) -> (Vec<u64>, Vec<(u64, u64)>) {
     (ingredients, fresh_ranges)
 }
 
-
-// too low -- 310
 pub fn part1(use_example: bool) -> String {
     let (ingredients, fresh_ranges) = parse_products(use_example);
     let is_fresh = |ingredient: u64| -> bool {
