@@ -6,6 +6,7 @@ pub mod day04;
 pub mod day05;
 pub mod day06;
 pub mod day07;
+pub mod day08;
 
 pub fn run_day(day: u32, part: u8, use_example: bool) -> Option<String> {
     match (day, part) {
@@ -23,6 +24,8 @@ pub fn run_day(day: u32, part: u8, use_example: bool) -> Option<String> {
         (6, 2) => Some(day06::part2(use_example)),
         (7, 1) => Some(day07::part1(use_example)),
         (7, 2) => Some(day07::part2(use_example)),
+        (8, 1) => Some(day08::part1(use_example)),
+        (8, 2) => Some(day08::part2(use_example)),
         _ => None,
     }
 }
